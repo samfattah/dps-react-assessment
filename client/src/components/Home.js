@@ -26,7 +26,7 @@ class Home extends Component {
         </Segment>
         <Grid>
           <Grid.Column computer={8} tablet={8} mobile={16}>
-            <Segment inverted>
+            <Segment>
               <Header
                 as='h1'
                 textAlign='center'
@@ -38,7 +38,7 @@ class Home extends Component {
             </Segment>
           </Grid.Column>
           <Grid.Column computer={8} tablet={8} mobile={16}>
-            <Segment inverted>
+            <Segment>
               <Header
                 as='h1'
                 textAlign='center'

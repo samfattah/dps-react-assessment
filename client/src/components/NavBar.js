@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Search } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
@@ -15,10 +15,20 @@ class NavBar extends Component {
           <Link to='/'>
             <Menu.Item name='home' active={this.activeItem('/')} />
           </Link>
+          <Link to='/beers'>
+            <Menu.Item name='beers' active={this.activeItem('/api/beers')} />
+          </Link>
+          <Link to='/breweries'>
+            <Menu.Item name='breweries' active={this.activeItem('/breweries')} />
+          </Link>
+          <Link to='/glassware'>
+            <Menu.Item name='glassware' active={this.activeItem('/glassware')} />
+          </Link>
           <Menu.Menu position='right'>
             <Link to='/'>
               <Menu.Item name='DPS React Assessment' />
             </Link>
+            <Search />
           </Menu.Menu>
         </Menu>
       </div>
