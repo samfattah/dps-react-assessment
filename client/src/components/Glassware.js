@@ -5,56 +5,61 @@ import {
   Divider, 
   Grid, 
   Image, 
-  Card 
+  Card,
+  Container
 } from 'semantic-ui-react';
 import axios from 'axios';
 
+
 class Glassware extends React.Component {
-  state = { glassware: '' };
+  state = {glassware: []}
 
   componentDidMount() {
     axios.get('/api/all_glassware')
-      .then(res => {
-        this.setState({ glassware: res.data.file })
-      })
-      .catch( error => {
-        console.log(error.response)
-      });
+    .then(res => {
+      this.setState({ glassware: res.data.entries })
+    });
   }
-
+  
   showGlassware = () => {
-    const { glassware } = this.state;
-    return (
-      // glassware.map ( beer =>
+    const { glassware } = this.state
+    return glassware.map ( glassware =>
       <div>
-        <Grid.Column computer={8} tablet={8} mobile={16}>
-          <Card>
+          <Grid.Column computer={8} tablet={8} mobile={16}>
+          <Card centered style={styles.glasswareCard}>
             <Card.Content>
-              <Card.Header>{glassware.name}</Card.Header>
-              <Card.Meta>
-                <span>{glassware.alcohol}</span>
-              </Card.Meta>                
-              <Card.Meta>
-                <span>{glassware.brewery}</span>
-              </Card.Meta>
+              <Card.Header>{glassware.type_display}</Card.Header> 
+              <Divider />              
             </Card.Content>
           </Card>
-        </Grid.Column>
+            </Grid.Column>
       </div>
     )
+  
   }
-    
-    
-    render() {
-      return(
-        <div>
-          <Header textAlign="center" as="h1">Glassware!</Header>
+
+  render() {
+    return(
+      <div>
+        <Container>
+        <br />
+          <Header textAlign="center" as="h1">glassware!</Header>
+          <br />
             <Grid>
               { this.showGlassware() }
             </Grid>
+        </Container>
       </div>
-    )
-  }
+      )
+    }
+}
+
+const styles = {
+  glasswareCard: {
+    // height: '275px',
+    width: '280px',
+    marginBottom: '10px'
+  },
 }
 
 export default Glassware;

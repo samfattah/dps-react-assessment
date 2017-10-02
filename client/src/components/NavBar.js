@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Search } from 'semantic-ui-react'
+import { Menu, Search, Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
@@ -11,26 +11,25 @@ class NavBar extends Component {
   render() {
     return (
       <div>
-        <Menu pointing>
-          <Link to='/'>
-            <Menu.Item name='home' active={this.activeItem('/')} />
-          </Link>
-          <Link to='/beers'>
-            <Menu.Item name='beers' active={this.activeItem('/api/beers')} />
-          </Link>
-          <Link to='/breweries'>
-            <Menu.Item name='breweries' active={this.activeItem('/breweries')} />
-          </Link>
-          <Link to='/glassware'>
-            <Menu.Item name='glassware' active={this.activeItem('/glassware')} />
-          </Link>
-          <Menu.Menu position='right'>
+        <Container>
+          <Menu pointing>
             <Link to='/'>
-              <Menu.Item name='DPS React Assessment' />
+              <Menu.Item name='home' active={this.activeItem('/')} />
             </Link>
-            <Search />
-          </Menu.Menu>
-        </Menu>
+            <Link to='/beers'>
+              <Menu.Item name='beers' active={this.activeItem('/api/beers')} />
+            </Link>
+            <Link to='/breweries'>
+              <Menu.Item name='breweries' active={this.activeItem('/breweries')} />
+            </Link>
+            <Link to='/random'>
+              <Menu.Item name='random' active={this.activeItem('/random')} />
+            </Link>
+            <Menu.Menu position='right'>
+              <Search />
+            </Menu.Menu>
+          </Menu>
+        </Container>
       </div>
     )
   }

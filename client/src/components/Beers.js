@@ -5,57 +5,66 @@ import {
   Divider, 
   Grid, 
   Image, 
-  Card 
+  Card,
+  Container
 } from 'semantic-ui-react';
 import axios from 'axios';
 
 
 class Beers extends React.Component {
-  state = { beers: '' };
+  state = {beers: []}
 
   componentDidMount() {
     axios.get('/api/all_beers')
-      .then(res => {
-        this.setState({ beers: res.data.file })
-      })
-      .catch( error => {
-        console.log(error.response)
-      });
+    .then(res => {
+      this.setState({ beers: res.data.entries })
+    });
   }
-
+  
   showBeers = () => {
-    const { beers } = this.state;
-    return (
-      // beers.map ( beer =>
+    const { beers } = this.state
+    return beers.map ( beer =>
       <div>
-        <Grid.Column computer={8} tablet={8} mobile={16}>
-          <Card>
+          <Grid.Column computer={8} tablet={8} mobile={16}>
+          <Card style={styles.beerCard}>
             <Card.Content>
-              <Card.Header>{beers.name}</Card.Header>
-              <Card.Meta>
-                <span>{beers.alcohol}</span>
-              </Card.Meta>                
-              <Card.Meta>
-                <span>{beers.brewery}</span>
-              </Card.Meta>
+              <Card.Header>{beer.name_display}</Card.Header> 
+              <Divider />              
+              <Card.Description >
+                <span>{beer.description}</span>
+              </Card.Description>
             </Card.Content>
           </Card>
-        </Grid.Column>
+            </Grid.Column>
       </div>
     )
+  
   }
-    
-    
-    render() {
-      return(
-        <div>
+
+
+
+  render() {
+    return(
+      <div>
+        <Container>
+        <br />
           <Header textAlign="center" as="h1">Beers!</Header>
-            <Grid>
+          <br />
+            <Grid fluid>
               { this.showBeers() }
             </Grid>
+        </Container>
       </div>
-    )
-  }
+      )
+    }
+}
+
+const styles = {
+  beerCard: {
+    height: '275px',
+    width: '260px',
+    marginBottom: '12px'
+  },
 }
 
 export default Beers;

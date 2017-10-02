@@ -5,7 +5,7 @@ import Flash from './Flash';
 import Home from './Home';
 import Beers from './Beers';
 import Breweries from './Breweries';
-import Glassware from './Glassware';
+import Random from './Random';
 import { Switch, Route } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
 
@@ -19,18 +19,12 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/beers' component={Beers} />
           <Route exact path='/breweries' component={Breweries} />
-          <Route exact path='/glassware' component={Glassware} />
+          <Route exact path='/random' component={Random} />
           <Route component={NoMatch} />
         </Switch>
       </Segment>
     );
   }
-}
-
-const styles = {
-  background: {
-    backgroundColor: 'black',
-  },
 }
 
 export default App;
